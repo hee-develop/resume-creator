@@ -20,6 +20,12 @@ export default {
     historyData: (state) => state.history.data,
   }),
 
+  data() {
+    return {
+      columnSizeArr: ['5em', '3em', '1fr'],
+    }
+  },
+
   methods: {
     addRow() {
       this.$store.commit('addHistoryRow');
