@@ -17,11 +17,17 @@ export default class App extends Vue {}
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: serif;
+  font-size: 1.1em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  padding: 3em;
+}
+
+@media print {
+  body {
+    width: 21cm;
+    height: 29.7cm;
+  }
 }
 </style>
