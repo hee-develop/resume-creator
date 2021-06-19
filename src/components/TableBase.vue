@@ -1,12 +1,12 @@
 <template>
   <table
-    class="table"
+    class="table-layout"
     ref="table"
     :style="gridColumnTemplate"
   >
     <thead>
       <th
-        class="cell"
+        class="cell header"
         v-for="head in header"
         :key="head"
       >
@@ -78,14 +78,19 @@ table, thead, tbody, tr {
   display: contents;
 }
 
-.table {
+.table-layout {
   display: grid;
   width: 100%;
+  border: 2px solid #000;
 }
 
 .table,
 .cell {
   border: 1px solid #000;
   border-collapse: collapse;
+}
+
+.header {
+  background-color: #EEE;
 }
 </style>
