@@ -16,6 +16,7 @@
 
     <tbody>
       <tr
+        class="row"
         v-for="(row, rowIndex) in tableData"
         :key="rowIndex"
       >
@@ -28,23 +29,31 @@
             :cell-value="cell"
             @cell-updated="(newValue) => cellUpdated(rowIndex, columnIndex, newValue)"
           />
+          <row-button
+            class="btn-cell-remover"
+            v-if="columnIndex === row.length - 1"
+            type="minus"
+            @onButtonClicked="() => removeRow(rowIndex)"
+          />
         </td>
       </tr>
     </tbody>
   </table>
 
-  <button
-    @click="addRow"
-  >
-    +
-  </button>
+  <div class="table-bottom-button">
+    <row-button
+      type="add"
+      @onButtonClicked="addRow"
+    />
+  </div>
 </template>
 
 <script>
+import RowButton from './atoms/RowButton.vue';
 import ModifiableTextarea from './ModifiableTextarea.vue';
 
 export default {
-  components: { ModifiableTextarea },
+  components: { ModifiableTextarea, RowButton },
   props: {
     header: { type: Array, required: true },
     tableData: { type: Array, default: () => [[]] },
@@ -62,6 +71,11 @@ export default {
     addRow() {
       this.$emit('add-row');
     },
+
+    removeRow(rowIndex) {
+      this.$emit('remove-row', rowIndex);
+    },
+
     // addColumn() {
     //   this.$emit('add-column');
     // },
@@ -86,11 +100,37 @@ table, thead, tbody, tr {
 }
 
 .cell {
+  position: relative;
   border: 1px solid #000;
   padding: 0.4em 0.2em;
 }
 
 .header {
   background-color: #EEE;
+}
+
+.table-bottom-button {
+  margin-top: 0.4em;
+  margin-bottom: 1em;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.row {
+  position: relative;
+}
+
+.btn-cell-remover {
+  visibility: collapse;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  bottom: 0;
+  margin-left: 8px;
+}
+
+.btn-cell-remover:hover,
+.row:hover .btn-cell-remover {
+  visibility: visible;
 }
 </style>
