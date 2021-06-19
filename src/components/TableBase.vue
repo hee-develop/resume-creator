@@ -82,12 +82,12 @@ table, thead, tbody, tr {
   display: grid;
   width: 100%;
   border: 2px solid #000;
+  border-collapse: collapse;
 }
 
-.table,
 .cell {
   border: 1px solid #000;
-  border-collapse: collapse;
+  padding: 0.4em 0.2em;
 }
 
 .header {
